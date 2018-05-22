@@ -19,7 +19,7 @@ oneHotEncoder = OneHotEncoder(categorical_features=[3])
 X = oneHotEncoder.fit_transform(X).toarray()
 
 #Avoiding the Dummy Variable Trap
-X = X[:, 1:]
+
 
 #Splitting the dataset into Trainning set and Test set
 from sklearn.model_selection import train_test_split
@@ -33,6 +33,14 @@ regressor.fit(X_train, y_train)
 #Predict the test set result
 y_pred = regressor.predict(X_test)
 
+w = regressor.coef_
+x1 = 1
+x2 = 0
+x3 = 120000
+x4 = 100000
+x5 = 310000
+
+y0 = w[0] + w[1]*x1 + w[2]*x2 + w[3]*x3 + w[4]*x4 + w[5]*x5
 
 print(dataset)
 print('\n\tX')
@@ -49,3 +57,6 @@ print("\n\ty_test")
 print(y_test)
 print("\n\ty_pred")
 print(y_pred)
+print("\n\tResult")
+print(regressor.coef_)
+print(y0)
